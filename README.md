@@ -1,7 +1,7 @@
 # react-seed
 
 <p align="center">
-<img src="https://github.com/skantus/react-redux-seed/blob/master/assets/screenshot.png" width="800"/>
+<img src="https://github.com/skantus/react-redux-seed/blob/master/src/assets/screnshot.png" width="800"/>
 </p>
 
 ## how to start the project 🔨

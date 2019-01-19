@@ -1,16 +1,39 @@
 import React from 'react';
-import { string } from 'prop-types';
-import { Grid } from 'react-flexbox-grid';
+import { func } from 'prop-types';
+import { connect } from 'react-redux';
+import { Grid, Row, Col } from 'react-flexbox-grid';
+import Details from 'components/Details';
+import { Increment, Decrement } from 'store/actions';
 import { content } from './home.module.css';
 
-const Home = ({ tech }) => (
-  <Grid fluid className={content}>
-    <div>Tech: {tech}</div>
-  </Grid>
-);
+class Home extends React.Component {
+  render() {
+    const { Increment, Decrement } = this.props;
+    return (
+      <Grid fluid className={content}>
+        <Row>
+          <button onClick={Decrement}>Decrement</button>
+          <Col>
+            <Details />
+          </Col>
+          <button onClick={Increment}>Increment</button>
+        </Row>
+      </Grid>
+    );
+  }
+}
 
 Home.propTypes = {
-  tech: string.isRequired
+  Increment: func.isRequired,
+  Decrement: func.isRequired
 };
 
-export default Home;
+const mapDispatchToProps = {
+  Increment,
+  Decrement
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Home);

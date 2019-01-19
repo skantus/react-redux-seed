@@ -1,5 +1,9 @@
 # react-seed
 
+<p align="center">
+<img src="https://github.com/skantus/react-redux-seed/blob/master/assets/screenshot.png" width="800"/>
+</p>
+
 ## how to start the project 🔨
 
 - Use `npm install` to install the dependencies.

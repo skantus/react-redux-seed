@@ -1,6 +1,6 @@
 # react-redux-seed
 
-## Utils
+## Ecosystem
 
 - Redux
 - React Hooks

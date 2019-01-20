@@ -1,6 +1,10 @@
 # react-seed
 
 <p align="center">
+<img src="https://github.com/skantus/react-redux-seed/blob/master/src/assets/animated.fig" width="800"/>
+</p>
+
+<p align="center">
 <img src="https://github.com/skantus/react-redux-seed/blob/master/src/assets/screnshot.png" width="800"/>
 </p>
 

@@ -1,4 +1,4 @@
 import { combineReducers } from 'redux';
-import counterReducer from './reducer';
+import { counterReducer, sessionReducer } from './reducer';
 
-export default combineReducers({ counterReducer });
+export default combineReducers({ counterReducer, session: sessionReducer });

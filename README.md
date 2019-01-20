@@ -1,7 +1,7 @@
 # react-seed
 
 <p align="center">
-<img src="https://github.com/skantus/react-redux-seed/blob/master/src/assets/animated.fig" width="800"/>
+<img src="https://raw.githubusercontent.com/skantus/react-redux-seed/master/src/assets/animated.gif" width="800"/>
 </p>
 
 <p align="center">

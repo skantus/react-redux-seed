@@ -1,11 +1,15 @@
-# react-seed
+# react-redux-seed
+
+## Utils
+
+- Redux
+- React Hooks
+- Material UI
+- React Flexbox Grid
+- React Router Dom
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/skantus/react-redux-seed/master/src/assets/animated.gif" width="800"/>
-</p>
-
-<p align="center">
-<img src="https://github.com/skantus/react-redux-seed/blob/master/src/assets/screnshot.png" width="800"/>
 </p>
 
 ## how to start the project 🔨

@@ -9,7 +9,14 @@ export const counterReducer = (state = { counter: 0 }, action) => {
   }
 };
 
-export const sessionReducer = (state = { user: null, isLogged: false, hasError: false }, action) => {
+const getIsLoggedValue = localStorage.getItem('isLogged') === 'true';
+const initialState = {
+  user: null,
+  isLogged: getIsLoggedValue || false,
+  hasError: false
+};
+
+export const sessionReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'SESSION_SUCCESS':
       return {

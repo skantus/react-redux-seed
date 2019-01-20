@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { object, bool, func } from 'prop-types';
 import { connect } from 'react-redux';
 import { withStyles, Typography, Input, Button } from '@material-ui/core';
@@ -6,22 +6,8 @@ import { LoginUser } from 'store/actions';
 import { styles } from './styles';
 import { content } from './login.module.css';
 
-const Login = props => {
-  const { classes, isLogged, loginUser, hasError } = props;
-
-  const [login, setLogin] = useState({ email: 'a@a.com', password: '1234' });
-  const [redirectToReferrer, setRedirectToReferrer] = useState(false);
-
-  const handleLogin = login => {
-    if (login) {
-      loginUser(login);
-      setRedirectToReferrer(isLogged);
-    }
-  };
-
-  useEffect(() => {
-    if (!redirectToReferrer) handleLogin();
-  });
+const Login = ({ classes, loginUser, hasError }) => {
+  const [credentials, setLogin] = useState({ email: 'a@a.com', password: '1234' });
 
   return (
     <div className={content}>
@@ -32,10 +18,10 @@ const Login = props => {
 
         <Input
           placeholder="Enter your email"
-          defaultValue={login.email}
+          defaultValue={credentials.email}
           error={hasError}
           className={classes.input}
-          onChange={({ target: { value } }) => setLogin({ ...login, email: value })}
+          onChange={({ target: { value } }) => setLogin({ ...credentials, email: value })}
           inputProps={{
             'aria-label': 'Description'
           }}
@@ -43,17 +29,17 @@ const Login = props => {
 
         <Input
           placeholder="Enter your password"
-          defaultValue={login.password}
+          defaultValue={credentials.password}
           type="password"
           error={hasError}
           className={classes.input}
-          onChange={({ target: { value } }) => setLogin({ ...login, password: value })}
+          onChange={({ target: { value } }) => setLogin({ ...credentials, password: value })}
           inputProps={{
             'aria-label': 'Description'
           }}
         />
 
-        <Button color="primary" className={classes.button} onClick={() => handleLogin(login)}>
+        <Button color="primary" className={classes.button} onClick={() => credentials && loginUser(credentials)}>
           Login
         </Button>
       </div>
@@ -63,7 +49,6 @@ const Login = props => {
 
 Login.propTypes = {
   classes: object.isRequired,
-  isLogged: bool.isRequired,
   loginUser: func.isRequired,
   hasError: bool.isRequired
 };

@@ -26,20 +26,20 @@ const sessionError = error => ({
   error
 });
 
+const sessionLogout = () => ({
+  type: 'SESSION_LOGOUT'
+});
+
 export const LoginUser = ({ email, password }) => dispatch => {
   if (!email || !password) {
     dispatch(sessionError());
     return;
   }
-  dispatch(sessionSuccess({ user: { email: 'Ale@redux.com' } }));
+  dispatch(sessionSuccess({ user: { email: 'a@a.com' } }));
+  localStorage.setItem('isLogged', true);
 };
-
-// ---------------------------- //
-
-const sessionLogout = () => ({
-  type: 'SESSION_LOGOUT'
-});
 
 export const LogoutUser = () => dispatch => {
   dispatch(sessionLogout());
+  localStorage.removeItem('isLogged');
 };

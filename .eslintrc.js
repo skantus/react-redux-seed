@@ -1,6 +1,7 @@
 module.exports = {
   parser: 'babel-eslint',
   extends: ['plugin:prettier/recommended', 'plugin:react/recommended'],
+  plugins: ['react-hooks'],
   settings: {
     'import/resolver': {
       node: {
@@ -14,5 +15,8 @@ module.exports = {
   env: {
     browser: true,
     es6: true
+  },
+  rules: {
+    'react-hooks/rules-of-hooks': 'error'
   }
 };

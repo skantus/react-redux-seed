@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Wrapper } from './style';
 
 /* eslint-disable react/prop-types */
-export const Header = ({ children, routes }) => (
+export const Header = ({ children, routes = [] }) => (
   <Wrapper>
     <section>
       <nav>

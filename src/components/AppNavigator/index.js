@@ -7,8 +7,8 @@ import { signInRoutes, signOutRoutes } from './routes';
 
 /* eslint-disable react/prop-types */
 const AuthRouter = ({ isLogged }) => {
-  const { initialRoute, routes } = isLogged ? { ...signInRoutes } : { ...signOutRoutes };
-  return <StackNavigator initialRoute={initialRoute} routes={routes} />;
+  const config = isLogged ? { ...signInRoutes } : { ...signOutRoutes };
+  return <StackNavigator {...config} />;
 };
 
 const MainStackNavigator = props => <Route component={() => AuthRouter({ ...props })} />;

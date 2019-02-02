@@ -5,14 +5,9 @@ import { Route, withRouter } from 'react-router-dom';
 import StackNavigator from './StackNavigator';
 import { signInRoutes, signOutRoutes } from './routes';
 
-const validateInitialStack = loggedIn =>
-  loggedIn
-    ? { initialRoute: signInRoutes.initialRoute, routes: signInRoutes.routes }
-    : { initialRoute: signOutRoutes.initialRoute, routes: signOutRoutes.routes };
-
 /* eslint-disable react/prop-types */
 const AuthRouter = ({ isLogged }) => {
-  const { initialRoute, routes } = validateInitialStack(isLogged);
+  const { initialRoute, routes } = isLogged ? { ...signInRoutes } : { ...signOutRoutes };
   return <StackNavigator initialRoute={initialRoute} routes={routes} />;
 };
 

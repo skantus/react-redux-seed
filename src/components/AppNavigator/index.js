@@ -1,21 +1,24 @@
 import React from 'react';
 import { bool } from 'prop-types';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, withRouter } from 'react-router-dom';
-import Login from 'components/Login';
-import Home from 'components/Home';
+import { Route, withRouter } from 'react-router-dom';
+import StackNavigator from './StackNavigator';
+import { signInRoutes, signOutRoutes } from './routes';
 
-const AuthRouter = withRouter(({ isLogged }) => (isLogged ? <Home path="/home" /> : <Login path="/login" />));
+const validateInitialStack = loggedIn =>
+  loggedIn
+    ? { initialRoute: signInRoutes.initialRoute, routes: signInRoutes.routes }
+    : { initialRoute: signOutRoutes.initialRoute, routes: signOutRoutes.routes };
 
-const AuthContainer = ({ isLogged }) => {
-  return (
-    <Router>
-      <AuthRouter isLogged={isLogged} />
-    </Router>
-  );
+/* eslint-disable react/prop-types */
+const AuthRouter = ({ isLogged }) => {
+  const { initialRoute, routes } = validateInitialStack(isLogged);
+  return <StackNavigator initialRoute={initialRoute} routes={routes} />;
 };
 
-AuthContainer.propTypes = {
+const MainStackNavigator = props => <Route component={() => AuthRouter({ ...props })} />;
+
+MainStackNavigator.propTypes = {
   isLogged: bool.isRequired
 };
 
@@ -23,4 +26,4 @@ const mapStateToProps = ({ session: { isLogged } }) => ({
   isLogged
 });
 
-export default connect(mapStateToProps)(AuthContainer);
+export default withRouter(connect(mapStateToProps)(MainStackNavigator));

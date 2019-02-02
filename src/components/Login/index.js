@@ -6,42 +6,46 @@ import { LoginUser } from 'store/actions';
 import { styles } from './styles';
 import { content } from './login.module.css';
 
-const Login = ({ classes, loginUser, hasError }) => {
+const Login = ({ classes, loginUser, hasError, isLogged }) => {
   const [credentials, setLogin] = useState({ email: 'a@a.com', password: '1234' });
-
   return (
     <div className={content}>
       <div className={classes.container}>
-        <Typography component="h2" variant="display1" align="center" gutterBottom>
-          Login
-        </Typography>
-
-        <Input
-          placeholder="Enter your email"
-          defaultValue={credentials.email}
-          error={hasError}
-          className={classes.input}
-          onChange={({ target: { value } }) => setLogin({ ...credentials, email: value })}
-          inputProps={{
-            'aria-label': 'Description'
-          }}
-        />
-
-        <Input
-          placeholder="Enter your password"
-          defaultValue={credentials.password}
-          type="password"
-          error={hasError}
-          className={classes.input}
-          onChange={({ target: { value } }) => setLogin({ ...credentials, password: value })}
-          inputProps={{
-            'aria-label': 'Description'
-          }}
-        />
-
-        <Button color="primary" className={classes.button} onClick={() => credentials && loginUser(credentials)}>
-          Login
-        </Button>
+        {isLogged ? (
+          <Typography component="h2" variant="display1" align="center" gutterBottom>
+            You are logged!
+          </Typography>
+        ) : (
+          <>
+            <Typography component="h2" variant="display1" align="center" gutterBottom>
+              Login
+            </Typography>
+            <Input
+              placeholder="Enter your email"
+              defaultValue={credentials.email}
+              error={hasError}
+              className={classes.input}
+              onChange={({ target: { value } }) => setLogin({ ...credentials, email: value })}
+              inputProps={{
+                'aria-label': 'Description'
+              }}
+            />
+            <Input
+              placeholder="Enter your password"
+              defaultValue={credentials.password}
+              type="password"
+              error={hasError}
+              className={classes.input}
+              onChange={({ target: { value } }) => setLogin({ ...credentials, password: value })}
+              inputProps={{
+                'aria-label': 'Description'
+              }}
+            />
+            <Button color="primary" className={classes.button} onClick={() => credentials && loginUser(credentials)}>
+              Login
+            </Button>
+          </>
+        )}
       </div>
     </div>
   );
@@ -50,7 +54,8 @@ const Login = ({ classes, loginUser, hasError }) => {
 Login.propTypes = {
   classes: object.isRequired,
   loginUser: func.isRequired,
-  hasError: bool.isRequired
+  hasError: bool.isRequired,
+  isLogged: bool.isRequired
 };
 
 const LoginComponent = withStyles(styles)(Login);
